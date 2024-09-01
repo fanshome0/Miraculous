@@ -8,20 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
   <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/afterglowplayer@1/dist/afterglow.min.js"></script>
   <style>
-/* اجعل الصفحة مصممة للهواتف المحمولة فقط */
-@media only screen and (min-width: 768px) {
-  body {
-    display: none; /* إخفاء المحتوى عندما تكون الشاشة كبيرة */
-  }
-}
-
-/* أساسيات التصميم للهواتف المحمولة */
 body {
-  margin-top: 10px;
+  margin: 0;
   background: #2A3B55;
-  text-align: center;
   color: #fff;
   font-family: 'El Messiri', sans-serif;
+  text-align: center;
 }
 
 .wrap {
@@ -47,11 +39,11 @@ body {
 
 .cube div {
   position: absolute;
-  padding: 0px;
+  padding: 0;
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-  opacity: 50;
+  opacity: 0.5;
   transition: transform 0.2s ease-in;
 }
 
@@ -66,12 +58,6 @@ body {
 @keyframes rotate {
   from { transform: rotateX(0deg) rotateY(0deg); }
   to { transform: rotateX(360deg) rotateY(360deg); }
-}
-
-html, body {
-  padding: 0;
-  margin: 0;
-  position: relative;
 }
 
 .button {
@@ -147,14 +133,36 @@ h1 {
   font-size: 48px;
   font-weight: bold;
   color: #ffffff;
+  margin-top: 0;
+  padding-top: 20px;
 }
 
-/* تحديث CSS لتناسب حجم الهاتف */
+/* Updated CSS for video player */
 #videoplayer {
   width: 100%;
-  margin-top: -290px;
   max-width: 100%;
   height: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .button, .button2 {
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  .buttoncontrols1 {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  #videoplayer {
+    margin-top: 0;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
 }
 
   </style>

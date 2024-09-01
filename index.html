@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>teen wolf</title>
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
+  <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/afterglowplayer@1/dist/afterglow.min.js"></script>
+  <style>
+    body {
+      margin-top: 10px;
+      background: #607d8b;
+      text-align: center;
+      color: #fff;
+      font-family: 'El Messiri', sans-serif;
+      background: #2A3B55;
+    }
+    .wrap {
+      margin-top: 150px;
+      perspective: 1000px;
+      perspective-origin: 50% 50%;
+      animation: bganim 3s linear 2s infinite;
+    }
+    @keyframes bganim {
+      from { background-position: 0px; }
+      to { background-position: 80px; }
+    }
+    .cube {
+      margin: 2px;
+      position: relative;
+      height: 50px;
+      width: 50px;
+      transform-style: preserve-3d;
+      animation: rotate 10s infinite linear;
+    }
+    .cube div {
+      position: absolute;
+      padding: 0px;
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      opacity: 50;
+      transition: transform 0.2s ease-in;
+    }
+    .front, .back, .right, .left, .top, .bottom {
+      background-color: #607d8b;
+    }
+    .left {
+      background-color: #6A1B9A;
+    }
+    @keyframes rotate {
+      from { transform: rotateX(0deg) rotateY(0deg); }
+      to { transform: rotateX(360deg) rotateY(360deg); }
+    }
+    html, body {
+      padding: 0;
+      margin: 0;
+      position: relative;
+    }
+    .button {
+      background-color: white;
+      border: none;
+      color: #6A1B9A;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: 'El Messiri', sans-serif;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    .button2 {
+      background-color: #2A3B65;
+      color: #fff;
+      border: 2px solid #2A3B55;
+      width: 99%;
+    }
+    .button2:hover {
+      background-color: #607d8b;
+      color: white;
+      border: 2px solid #607d8b;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+    .buttoncontrols1 {
+      display: inline-block;
+      padding: 10px 15px;
+      font-size: 14px;
+      margin: 5px;
+      color: #fff;
+      background-color: #6A1B9A;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .buttoncontrols1:hover {
+      background-color: #5a137a;
+    }
+    #quality-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #607d8b;
+      z-index: 1000;
+    }
+    #overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+    }
+    h1 {
+      font-family: 'El Messiri', sans-serif;
+      font-size: 48px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    /* Updated CSS for video player */
+    #videoplayer {
+      width: 100%;
+      margin-top: -290px;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center; padding-top: 58%;"></h1>
+  <h4 style="text-align: center;"></h4>
+  <div class="row">
+    <div class="col-xs-6">
+      <div style="width: 100%">
+        <center>
+          <video class="afterglow" poster="https://s01.babup.com/uploads/Invincible-Flying-featured.jpg" id='videoplayer' title='Video 01' width='16' height='9' data-autoresize="fit" src="https://firebasestorage.googleapis.com/v0/b/mare-c9dc2.appspot.com/o/%D8%AA%D8%B1%D9%88%D9%8A%D8%AC%2Flv_0_%D9%A2%D9%A0%D9%A2%D9%A4%D9%A0%D9%A7%D9%A1%D9%A1%D9%A2%D9%A2%D9%A0%D9%A6%D9%A4%D9%A0.mp4?alt=media&token=02d9e70d-2b01-4de7-91c9-3e492d75f2cd"></video>
+          <div style="background-color:#2A3B55; padding: 4px; border-radius: 4px; display: inline-block;">
+            <center>
+              <button class="buttoncontrols1" onclick="rwd5svideoplayer()"><i class="fas fa-step-backward"></i> -5 </button>
+              <button class="buttoncontrols1" onclick="fwd5svideoplayer()">+5<i class="fas fa-step-forward"></i></button>
+            </center>
+          </div>
+        </center>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div style="text-align: center;">
+        <select id="season-select" class="button button2" onchange="changeSeason(this)">
+          <option value="#">المواسم</option>
+          <option value="season1">الموسم الاول</option>
+          <option value="season2">المواسم الثاني</option>
+          <!-- Add more seasons as needed -->
+        </select>
+      </div>
+      <p style="text-align: center;">
+        <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e1')">الحلقة 1</button>
+        <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e2')">الحلقة 2</button>
+         <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e3')"> الحلقة 3</button>
+             <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e4')"> الحلقة 4</button>
+                    <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e5')">الحلقة 5</button>
+                              <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e6')">الحلقة 6</button>
+                               <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e7')">الحلقة 7</button>
+                                     <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e8')">الحلقة 8</button>
+                                           
+        <!-- Add more episodes for season 1 -->
+      </p>
+      <p style="text-align: center;">
+        <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e1')"> الحلقة 1</button>
+        <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e2')"> الحلقة 2</button>
+     <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e3')"> الحلقة 3</button>
+          <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e4')"> الحلقة 4</button>
+               <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e5')"> الحلقة 5</button>
+                    <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e6')"> الحلقة 6</button>
+                         <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e7')"> الحلقة 7</button>
+     <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e8')"> الحلقة 8</button>
+      </p>
+      <!-- Add more episode buttons for each season -->
+    </div>
+  </div>
+  <div id="overlay" onclick="hideQualityPopup()"></div>
+  <div id="quality-popup">
+    <h3 style="color: #2A3B55;">خيارات دقة العرض</h3>
+    <button class="button button2" onclick="playVideo('low')">480p</button><br>
+    <button class="button button2" onclick="playVideo('medium')">720p</button><br>
+    <button class="button button2" onclick="playVideo('high')">1080p</button>
+  </div>
+  <script>
+    var videoplayer = document.getElementById("videoplayer");
+    var episodeQualityUrls = {
+            <!--season 1 -->
+      'season1e1': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20001%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20001%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20001%201080p.mp4'
+      },
+      'season1e2': {
+    'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20002%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20002%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20002%201080p.mp4'
+      },
+      'season1e3': {
+     'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20003%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20003%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20003%201080p.mp4'
+      },
+      'season1e4': {
+     'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20004%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20004%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20004%201080p.mp4'
+      } ,
+           'season1e5': {
+      'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20005%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20005%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20005%201080p.mp4'
+      } ,
+         'season1e6': {
+      'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20006%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20006%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20006%201080p.mp4'
+      } ,
+         'season1e7': {
+     'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20007%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20007%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20007%201080p.mp4'
+      } ,
+           'season1e8': {
+    'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20008%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20008%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20008%201080p.mp4'
+      } ,
+             'season2e1': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/108/Invincible%20Season%202%20001%20240p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/108/Invincible%20Season%202%20001%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/108/Invincible%20Season%202%20001%201080p.mp4'
+      } ,
+        'season2e2': {
+     'low': 'https://pullzonetaher.b-cdn.net/stream/111/Invincible%20Season%202%20002%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/111/Invincible%20Season%202%20002%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/111/Invincible%20Season%202%20002%201080p.mp4'
+      } ,
+        'season2e3': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/112/invincible%20Season%202%20003%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/112/invincible%20Season%202%20003%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/112/invincible%20Season%202%20003%20720p.mp4'
+      } ,
+         'season2e4': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/112/Invincible%20Season%202%20004%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/112/Invincible%20Season%202%20004%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/112/Invincible%20Season%202%20004%201080p.mp4'
+      } ,
+          'season2e5': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20S02%20005%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20S02%20005%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20S02%20005%201080p.mp4'
+      } ,
+          'season2e6': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20006%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20006%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20006%201080p.mp4'
+      } ,
+          'season2e7': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20007%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20007%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20007%201080p.mp4'
+      } ,
+          'season2e8': {
+        'low': 'https://pullzonetaher.b-cdn.net/stream/109/4.2024/Invincible%20Season%202/Invincible%20S02%20009%20480p.mp4',
+        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/4.2024/Invincible%20Season%202/Invincible%20S02%20009%20720p.mp4',
+        'high': 'https://pullzonetaher.b-cdn.net/stream/109/4.2024/Invincible%20Season%202/Invincible%20S02%20009%201080p.mp4'
+      } ,
+      // season 2 
+    };
+    var currentEpisode = '';
+    function playPausevideoplayer() {
+      if (videoplayer.paused) videoplayer.play();
+      else videoplayer.pause();
+      document.getElementById('controls2').style.display = 'block';
+      document.getElementById('controls2').style.display = 'none';
+    }
+    function rwd5svideoplayer() { videoplayer.currentTime = videoplayer.currentTime - 5; }
+    function fwd5svideoplayer() { videoplayer.currentTime = videoplayer.currentTime + 5; }
+    function rwd15svideoplayer() { videoplayer.currentTime = videoplayer.currentTime - 15; }
+    function fwd15svideoplayer() { videoplayer.currentTime = videoplayer.currentTime + 15; }
+    function toggleFullScreenvideoplayer() {
+      if (videoplayer.requestFullScreen) videoplayer.requestFullScreen();
+      else if (videoplayer.webkitRequestFullScreen) videoplayer.webkitRequestFullScreen();
+      else if (videoplayer.mozRequestFullScreen) videoplayer.mozRequestFullScreen();
+    }
+    function showQualityPopup(episode) {
+      currentEpisode = episode;
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('quality-popup').style.display = 'block';
+    }
+    function hideQualityPopup() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('quality-popup').style.display = 'none';
+    }
+    function playVideo(quality) {
+      var url = episodeQualityUrls[currentEpisode][quality];
+      afterglow.getPlayer('videoplayer').pause().currentTime(0).src(url).play();
+      hideQualityPopup();
+    }
+    function changeSeason(selectElement) {
+      var season = selectElement.value;
+      var season1Buttons = document.querySelectorAll('.season1');
+      var season2Buttons = document.querySelectorAll('.season2');
+      // Hide all episode buttons
+      season1Buttons.forEach(function(button) {
+        button.style.display = 'none';
+      });
+      season2Buttons.forEach(function(button) {
+        button.style.display = 'none';
+      });
+      // Show episodes for the selected season
+      if (season === 'season1') {
+        season1Buttons.forEach(function(button) {
+          button.style.display = 'inline-block';
+        });
+      } else if (season === 'season2') {
+        season2Buttons.forEach(function(button) {
+          button.style.display = 'inline-block';
+        });
+      }
+    }
+  </script>
+      <script>
+
+      function checkInternetConnection() {
+
+    if (!navigator.onLine) {
+        document.body.classList.add('offline');
+        document.body.innerHTML = '<p> ليس لديك اتصال إنترنت</p>';
+        document.body.style.backgroundColor = 'black';
+        document.body.style.color = 'white';
+        document.body.style.display = 'flex';
+        document.body.style.justifyContent = 'center';
+        document.body.style.alignItems = 'center';
+        document.body.style.height = '100vh';
+        document.body.style.margin = '0';
+        document.body.style.fontSize = '24px';
+    }
+}
+
+window.addEventListener('online', checkInternetConnection);
+window.addEventListener('offline', checkInternetConnection);
+
+// فحص الاتصال بشكل دوري
+setInterval(checkInternetConnection, 3000);
+
+    </script>
+</body>
+</html>

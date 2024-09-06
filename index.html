@@ -1,337 +1,517 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title></title>
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri&display=swap" rel="stylesheet">
-  <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/afterglowplayer@1/dist/afterglow.min.js"></script>
-  <style>
-    body {
-      margin-top: 10px;
-      background: #607d8b;
-      text-align: center;
-      color: #fff;
-      font-family: 'El Messiri', sans-serif;
-      background: #2A3B55;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miraculous</title>
+    <!-- إضافة مكتبة أيقونات Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+          
+       
+ 
+    #episodes-list {
+        display: flex;
+        flex-direction: column; /* ترتيب العناصر عمودياً */
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        max-height: 300px; /* ارتفاع محدد للحاوية للسماح بالتمرير */
+        overflow-y: auto; /* تمكين التمرير العمودي */
+        background: rgba(15, 12, 41, 0.8); /* لون مناشقة للخلفية مع الشفافية */
+        border-radius: 10px; /* إضافة بعض الحواف الدائرية لتناسق التصميم */
+        padding: 10px; /* مساحة داخلية */
     }
-    .wrap {
-      margin-top: 150px;
-      perspective: 1000px;
-      perspective-origin: 50% 50%;
-      animation: bganim 3s linear 2s infinite;
+    #episodes-list li {
+        margin-bottom: 10px;
+        background: #302b63; /* لون مناشقة للخلفية */
+        padding: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        color: #fff; /* لون النص */
     }
-    @keyframes bganim {
-      from { background-position: 0px; }
-      to { background-position: 80px; }
+    #episodes-list li:hover {
+        background: #555; /* تغيير اللون عند التمرير */
     }
-    .cube {
-      margin: 2px;
-      position: relative;
-      height: 50px;
-      width: 50px;
-      transform-style: preserve-3d;
-      animation: rotate 10s infinite linear;
-    }
-    .cube div {
-      position: absolute;
-      padding: 0px;
-      box-sizing: border-box;
-      height: 100%;
-      width: 100%;
-      opacity: 50;
-      transition: transform 0.2s ease-in;
-    }
-    .front, .back, .right, .left, .top, .bottom {
-      background-color: #607d8b;
-    }
-    .left {
-      background-color: #6A1B9A;
-    }
-    @keyframes rotate {
-      from { transform: rotateX(0deg) rotateY(0deg); }
-      to { transform: rotateX(360deg) rotateY(360deg); }
-    }
-    html, body {
-      padding: 0;
-      margin: 0;
-      position: relative;
-    }
-    .button {
-      background-color: white;
-      border: none;
-      color: #6A1B9A;
-      padding: 16px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      font-family: 'El Messiri', sans-serif;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
-    .button2 {
-      background-color: #2A3B65;
-      color: #fff;
-      border: 2px solid #2A3B55;
-      width: 99%;
-    }
-    .button2:hover {
-      background-color: #607d8b;
-      color: white;
-      border: 2px solid #607d8b;
-      font-weight: 900;
-      letter-spacing: 2px;
-    }
-    .buttoncontrols1 {
-      display: inline-block;
-      padding: 10px 15px;
-      font-size: 14px;
-      margin: 5px;
-      color: #fff;
-      background-color: #6A1B9A;
-      border: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-    .buttoncontrols1:hover {
-      background-color: #5a137a;
-    }
-    #quality-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border: 1px solid #607d8b;
-      z-index: 1000;
-    }
-    #overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
-    }
-    h1 {
-      font-family: 'El Messiri', sans-serif;
-      font-size: 48px;
-      font-weight: bold;
-      color: #ffffff;
-    }
-    /* Updated CSS for video player */
-    #videoplayer {
-      width: 100%;
-      margin-top: -900px;
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
+
+
+
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(#161b22, #161b22, #161b22, #161b22);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow: auto; /* تمكين التمرير عند الحاجة */
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding-top: 50px; /* توفير مساحة للنص الثابت */
+        }
+        #video-player {
+            width: 100%;
+            height: 500px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer; /* لإظهار مؤشر يدوي عند التمرير فوق الفيديو */
+        }
+        #video-player iframe {
+            width: 100%;
+            height: 150%;
+            border: none;
+        }
+        #rights-link {
+            position: fixed;
+            top: 45px;
+            right: -2px;
+            background: transparent;
+            color: #fff;
+            padding: 100px 200px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 20px;
+            z-index: 10; /* التأكد من أن النص يظهر فوق جميع العناصر الأخرى */
+        }
+        #message {
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            margin: 20px 0;
+            opacity: 0.8;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 20px 0;
+            background: linear-gradient(45deg, #ff512f, #0f0c29);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .button i {
+            margin-right: 8px;
+        }
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* خلفية شفافة */
+            z-index: 2;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #0f0c29, #302b63 );
+            border-radius: 15px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-content.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .modal-content li {
+            padding: 12px 16px;
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+        }
+        .modal-content li:last-child {
+            border-bottom: none;
+        }
+        .modal-content li:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        .close:hover {
+            background: #cc0000;
+        }
+        #notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+            display: none;
+            z-index: 3;
+        }
+    </style>
 </head>
 <body>
-  <h1 style="text-align: center; padding-top: 58%;"></h1>
-  <h4 style="text-align: center;"></h4>
-  <div class="row">
-    <div class="col-xs-6">
-      <div style="width: 100%">
-        <center>
-          <video class="afterglow" poster="https://s01.babup.com/uploads/Invincible-Flying-featured.jpg" id='videoplayer' title='Video 01' width='16' height='9' data-autoresize="fit" src="https://firebasestorage.googleapis.com/v0/b/mare-c9dc2.appspot.com/o/%D8%AA%D8%B1%D9%88%D9%8A%D8%AC%2Flv_0_%D9%A2%D9%A0%D9%A2%D9%A4%D9%A0%D9%A7%D9%A1%D9%A1%D9%A2%D9%A2%D9%A0%D9%A6%D9%A4%D9%A0.mp4?alt=media&token=02d9e70d-2b01-4de7-91c9-3e492d75f2cd"></video>
-          <div style="background-color:#2A3B55; padding: 4px; border-radius: 4px; display: inline-block;">
-            <center>
-              <button class="buttoncontrols1" onclick="rwd5svideoplayer()"><i class="fas fa-step-backward"></i> -5 </button>
-              <button class="buttoncontrols1" onclick="fwd5svideoplayer()">+5<i class="fas fa-step-forward"></i></button>
-            </center>
-          </div>
-        </center>
-      </div>
+ 
+    <div class="container">
+        <div id="video-player" onclick="toggleFullScreen()">
+            <p id="message">يرجى تحديد حلقة لبدء المشاهدة</p>
+        </div>
+        <button class="button" onclick="showModal('season-modal')"><i class="fas fa-list"></i></button>
+        <button class="button" onclick="showDetails()"><i class="fas fa-info-circle"></i></button>
     </div>
-    <div class="col-xs-6">
-      <div style="text-align: center;">
-        <select id="season-select" class="button button2" onchange="changeSeason(this)">
-          <option value="#">المواسم</option>
-          <option value="season1">الموسم الاول</option>
-          <option value="season2">المواسم الثاني</option>
-          <!-- Add more seasons as needed -->
-        </select>
-      </div>
-      <p style="text-align: center;">
-        <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e1')">الحلقة 1</button>
-        <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e2')">الحلقة 2</button>
-         <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e3')"> الحلقة 3</button>
-             <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e4')"> الحلقة 4</button>
-                    <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e5')">الحلقة 5</button>
-                              <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e6')">الحلقة 6</button>
-                               <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e7')">الحلقة 7</button>
-                                     <button class="button button2 season1" style="display: none;" onclick="showQualityPopup('season1e8')">الحلقة 8</button>
-                                           
-        <!-- Add more episodes for season 1 -->
-      </p>
-      <p style="text-align: center;">
-        <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e1')"> الحلقة 1</button>
-        <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e2')"> الحلقة 2</button>
-     <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e3')"> الحلقة 3</button>
-          <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e4')"> الحلقة 4</button>
-               <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e5')"> الحلقة 5</button>
-                    <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e6')"> الحلقة 6</button>
-                         <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e7')"> الحلقة 7</button>
-     <button class="button button2 season2" style="display: none;" onclick="showQualityPopup('season2e8')"> الحلقة 8</button>
-      </p>
-      <!-- Add more episode buttons for each season -->
+
+    <div id="season-modal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal('season-modal')">×</button>
+            <h2>إختر موسم</h2>
+            <ul>
+                <li onclick="showEpisodes('season1')">الموسم الأول</li>
+                <li onclick="showEpisodes('season2')">الموسم الثاني</li>
+                     <li onclick="showEpisodes('season3')">الموسم  الثالث</li>
+                          <li onclick="showEpisodes('season4')">الموسم   الرابع  </li>
+       <li onclick="showEpisodes('season5')">الموسم   الخامس   </li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <div id="overlay" onclick="hideQualityPopup()"></div>
-  <div id="quality-popup">
-    <h3 style="color: #2A3B55;">خيارات دقة العرض</h3>
-    <button class="button button2" onclick="playVideo('low')">480p</button><br>
-    <button class="button button2" onclick="playVideo('medium')">720p</button><br>
-    <button class="button button2" onclick="playVideo('high')">1080p</button>
-  </div>
-  <script>
-    var videoplayer = document.getElementById("videoplayer");
-    var episodeQualityUrls = {
-            <!--season 1 -->
-      'season1e1': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20001%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20001%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20001%201080p.mp4'
-      },
-      'season1e2': {
-    'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20002%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20002%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20002%201080p.mp4'
-      },
-      'season1e3': {
-     'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20003%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20003%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20003%201080p.mp4'
-      },
-      'season1e4': {
-     'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20004%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20004%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20004%201080p.mp4'
-      } ,
-           'season1e5': {
-      'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20005%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20005%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20005%201080p.mp4'
-      } ,
-         'season1e6': {
-      'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20006%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20006%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20006%201080p.mp4'
-      } ,
-         'season1e7': {
-     'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20007%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20007%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20007%201080p.mp4'
-      } ,
-           'season1e8': {
-    'low': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20008%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20008%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/107/Invincible%20008%201080p.mp4'
-      } ,
-             'season2e1': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/108/Invincible%20Season%202%20001%20240p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/108/Invincible%20Season%202%20001%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/108/Invincible%20Season%202%20001%201080p.mp4'
-      } ,
-        'season2e2': {
-     'low': 'https://pullzonetaher.b-cdn.net/stream/111/Invincible%20Season%202%20002%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/111/Invincible%20Season%202%20002%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/111/Invincible%20Season%202%20002%201080p.mp4'
-      } ,
-        'season2e3': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/112/invincible%20Season%202%20003%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/112/invincible%20Season%202%20003%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/112/invincible%20Season%202%20003%20720p.mp4'
-      } ,
-         'season2e4': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/112/Invincible%20Season%202%20004%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/112/Invincible%20Season%202%20004%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/112/Invincible%20Season%202%20004%201080p.mp4'
-      } ,
-          'season2e5': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20S02%20005%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20S02%20005%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20S02%20005%201080p.mp4'
-      } ,
-          'season2e6': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20006%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20006%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20006%201080p.mp4'
-      } ,
-          'season2e7': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20007%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20007%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/109/3.2024/Invincible%20Season%202/Invincible%20Season%202%20007%201080p.mp4'
-      } ,
-          'season2e8': {
-        'low': 'https://pullzonetaher.b-cdn.net/stream/109/4.2024/Invincible%20Season%202/Invincible%20S02%20009%20480p.mp4',
-        'medium': 'https://pullzonetaher.b-cdn.net/stream/109/4.2024/Invincible%20Season%202/Invincible%20S02%20009%20720p.mp4',
-        'high': 'https://pullzonetaher.b-cdn.net/stream/109/4.2024/Invincible%20Season%202/Invincible%20S02%20009%201080p.mp4'
-      } ,
-      // season 2 
-    };
-    var currentEpisode = '';
-    function playPausevideoplayer() {
-      if (videoplayer.paused) videoplayer.play();
-      else videoplayer.pause();
-      document.getElementById('controls2').style.display = 'block';
-      document.getElementById('controls2').style.display = 'none';
-    }
-    function rwd5svideoplayer() { videoplayer.currentTime = videoplayer.currentTime - 5; }
-    function fwd5svideoplayer() { videoplayer.currentTime = videoplayer.currentTime + 5; }
-    function rwd15svideoplayer() { videoplayer.currentTime = videoplayer.currentTime - 15; }
-    function fwd15svideoplayer() { videoplayer.currentTime = videoplayer.currentTime + 15; }
-    function toggleFullScreenvideoplayer() {
-      if (videoplayer.requestFullScreen) videoplayer.requestFullScreen();
-      else if (videoplayer.webkitRequestFullScreen) videoplayer.webkitRequestFullScreen();
-      else if (videoplayer.mozRequestFullScreen) videoplayer.mozRequestFullScreen();
-    }
-    function showQualityPopup(episode) {
-      currentEpisode = episode;
-      document.getElementById('overlay').style.display = 'block';
-      document.getElementById('quality-popup').style.display = 'block';
-    }
-    function hideQualityPopup() {
-      document.getElementById('overlay').style.display = 'none';
-      document.getElementById('quality-popup').style.display = 'none';
-    }
-    function playVideo(quality) {
-      var url = episodeQualityUrls[currentEpisode][quality];
-      afterglow.getPlayer('videoplayer').pause().currentTime(0).src(url).play();
-      hideQualityPopup();
-    }
-    function changeSeason(selectElement) {
-      var season = selectElement.value;
-      var season1Buttons = document.querySelectorAll('.season1');
-      var season2Buttons = document.querySelectorAll('.season2');
-      // Hide all episode buttons
-      season1Buttons.forEach(function(button) {
-        button.style.display = 'none';
-      });
-      season2Buttons.forEach(function(button) {
-        button.style.display = 'none';
-      });
-      // Show episodes for the selected season
-      if (season === 'season1') {
-        season1Buttons.forEach(function(button) {
-          button.style.display = 'inline-block';
-        });
-      } else if (season === 'season2') {
-        season2Buttons.forEach(function(button) {
-          button.style.display = 'inline-block';
-        });
-      }
-    }
-  </script>
-      <script>
+
+    <div id="episodes-modal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal('episodes-modal')">×</button>
+            <h2>بدء المشاهدة </h2>
+            <ul id="episodes-list">
+                <!-- سيتم ملء هذه القائمة ديناميكياً -->
+            </ul>
+        </div>
+    </div>
+
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal('details-modal')">×</button>
+
+            <p>لتكبير العرض، انقر نقرًا مزدوجًا على الحلقة ليتم تكبيرها لمشاهدة افضل</p>
+        </div>
+    </div>
+
+    <div id="notification"></div>
+
+    <script>
+        let currentVideoUrl = '';
+        let videoIframe = null;
+        let currentVideoTime = 0;
+
+        function playEpisode(url) {
+            currentVideoUrl = url;
+            const videoPlayer = document.getElementById('video-player');
+            videoPlayer.innerHTML = `<iframe src="${url}" allow="autoplay; fullscreen" id="video-iframe"></iframe>`;
+            videoIframe = document.getElementById('video-iframe');
+            document.getElementById('message').style.display = 'none';
+            closeAllModals();
+
+            // استرجاع الوقت المخزن للفيديو
+            const storedTime = localStorage.getItem(`video-${url}-time`);
+            if (storedTime && videoIframe) {
+                setTimeout(() => {
+                    videoIframe.contentWindow.postMessage('{"event":"command","func":"seekTo","args":[' + storedTime + ']}', '*');
+                }, 1000);
+            }
+
+            // تحديث الوقت المخزن كل ثانية
+            if (videoIframe) {
+                setInterval(() => {
+                    if (videoIframe.contentWindow) {
+                        videoIframe.contentWindow.postMessage('{"event":"command","func":"getVideoTime","args":[]}', '*');
+                    }
+                }, 1000);
+            }
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+            setTimeout(() => document.querySelector(`#${modalId} .modal-content`).classList.add('show'), 10);
+        }
+
+        function closeModal(modalId) {
+            const modalContent = document.querySelector(`#${modalId} .modal-content`);
+            modalContent.classList.remove('show');
+            setTimeout(() => document.getElementById(modalId).style.display = 'none', 300);
+        }
+
+        function closeAllModals() {
+            closeModal('season-modal');
+            closeModal('episodes-modal');
+            closeModal('details-modal');
+        }
+
+        function showEpisodes(season) {
+            const episodesList = document.getElementById('episodes-list');
+            let episodesHtml = '';
+
+            if (season === 'season1') {
+                episodesHtml = `
+              
+       
+<li onclick="selectEpisode('https://drive.google.com/file/d/1V596KQOq2wdo38b9_tZHxuIv0InfU_2G/preview')">الحلقة الأولى</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1InvDrLew0yX6iNuZkU7kapPEHxbQAMAX/preview')">الحلقة الثانية</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1YHCj_vdrVlpkRYxDpgPr0vHBSEnGSSD4/preview')">الحلقة الثالثة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1gZtDwjrWU_0surRtYmtWjJdrZ4pDycBr/preview')">الحلقة الرابعة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1Zmepm7Ppia-vQGXJX424jaeaECulj_hG/preview')">الحلقة الخامسة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1Qe_Q7yhrCUBIo2fKf4SrShRWbbL7uzaN/preview')">الحلقة السادسة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1S1B2s8d5WYielGaSXraG7O_1fYburiUY/preview')">الحلقة السابعة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1SJtFX6W1q3sEkCi1rsoBqdVMzWcAPb6E/preview')">الحلقة الثامنة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1Jokk3-NROepzr70A07cWCgRKNeMQweyP/preview')">الحلقة التاسعة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1Ix2IwCIhQz00M8PpeBx0fq4-TwQBWxXZ/preview')">الحلقة العاشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1vVAyLbgI6Y2rj3W1sIZivaNoOUa7SOSQ/preview')">الحلقة الحادية عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1Af4vZcFar7sX-abt2y8cG1aXn4TwnumP/preview')">الحلقة الثانية عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/10Eg7N30_mZa3AlXVc9b-xibqVRxCiASb/preview')">الحلقة الثالثة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1jWCgeN326plifMEt2cvd19Crlmc38cH6/preview')">الحلقة الرابعة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1xE01F9O5-lONqPrWI35Z4GZiwv6_fth4/preview')">الحلقة الخامسة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1FmnfkTWH_IrjvDHcGt08LVp58k8vrEUf/preview')">الحلقة السادسة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1M8Qgi2RUg3FanqSKFnde9a1cUnAqMQD6/preview')">الحلقة السابعة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1YnRhMDkfqU_Vy6qH7EzkBK9fPVX0ZRMs/preview')">الحلقة الثامنة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1X3XdrHoOJULxYlx9EfHQR5c2EPa8qnmS/preview')">الحلقة التاسعة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1nzc3vAuk1uix-HxjwShAkr5uuzD6MeUl/preview')">الحلقة العشرون</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1Wg38P5Hf0bC9KMnkNHPvs7x0LM88n-yi/preview')">الحلقة الحادية والعشرون</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1pHUa1wuKXSSflLL4UDeCo7aLjQmFaofP/preview')">الحلقة الثانية والعشرون</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1f98oZP-F3oGcCkOUJ8VfECE2GIpraBHT/preview')">الحلقة الثالثة والعشرون</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1-89rElZMgHMqsnw9Bf1Tnz0gB7JwjEaS/preview')">الحلقة الرابعة والعشرون</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1-Plu8bYdrqXizx2zgVgwT8vhgd_AVZA7/preview')">الحلقة الخامسة والعشرون</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1i9_1u5Q8_r7o9hDCgrwAEiPlaLWDsZRu/preview')"><i class="fas fa-tag"></i> الحلقة الأخيرة للموسم الأول</li>
+              
+
+
+
+
+
+
+                `;
+                
+                
+            } else if (season === 'season2') {
+                episodesHtml = `
+      <li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأولى</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العاشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأخيرة الموسم الثالث</li>
+                    
+                    
+                    
+                    
+                `;
+          
+          
+          
+          
+          
+            } else if (season === 'season3') {
+                episodesHtml = `
+  
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأولى</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العاشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأخيرة الموسم الثالث</li>
+                `;
+          
+          
+            } else if (season === 'season4') {
+                episodesHtml = `
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأولى</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العاشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأخيرة الموسم الرابع</li></li>
+
+                `;
+            
+              
+              
+              
+            } else if (season === 'season5') {
+                episodesHtml = `
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأولى</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العاشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة التاسعة عشرة</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة العشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة والعشرون</li>
+<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الأخيرة الموسم الخامس</li></li>
+
+                `;
+                    
+              
+            }
+            episodesList.innerHTML = episodesHtml;
+            closeModal('season-modal');
+            showModal('episodes-modal');
+        }
+
+        function selectEpisode(url) {
+            closeModal('episodes-modal');
+            playEpisode(url);
+        }
+
+        function showDetails() {
+            showModal('details-modal');
+        }
+
+        function toggleFullScreen() {
+            const videoPlayer = document.getElementById('video-player');
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.mozRequestFullScreen) { // Firefox
+                videoPlayer.mozRequestFullScreen();
+            } else if (videoPlayer.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) { // IE/Edge
+                videoPlayer.msRequestFullscreen();
+            }
+        }
+
+        window.onmessage = function(event) {
+            if (event.data.event === 'command' && event.data.func === 'getVideoTime') {
+                currentVideoTime = event.data.args;
+                if (currentVideoUrl) {
+                    localStorage.setItem(`video-${currentVideoUrl}-time`, currentVideoTime);
+                }
+            }
+        }
+
+        // إغلاق النوافذ المنبثقة عند النقر خارجها
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeAllModals();
+            }
+        }
+    </script>
+        <script>
 
       function checkInternetConnection() {
 
@@ -356,5 +536,85 @@ window.addEventListener('offline', checkInternetConnection);
 setInterval(checkInternetConnection, 3000);
 
     </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شريط التذييل المتحرك</title>
+    <style>
+        /* استايل عام للصفحة */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* استايل شريط التذييل */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #e6b800; /* لون خلفية الشريط */
+            color: #000; /* لون النص */
+            text-align: center;
+            padding: 10px 0;
+            overflow: hidden; /* لإخفاء النصوص التي تتجاوز العرض */
+        }
+
+        .marquee-container {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 10s linear infinite; /* سرعة الحركة */
+        }
+
+        .marquee {
+            font-family: 'Cairo', sans-serif; /* خط عربي عريض وجميل */
+            font-weight: bold; /* نص عريض */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(-100%); /* يبدأ من خارج الشاشة من اليسار */
+            }
+            100% {
+                transform: translateX(100%); /* ينتهي عند خارج الشاشة من اليمين */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- محتوى الصفحة هنا -->
+    </div>
+
+    <footer class="footer">
+        <div class="marquee-container">
+            <div class="marquee">
+       @TDRSVS
+             لا تقلق بشأن تكملة المواسم الأخرى نحن نعمل على هذا اي خلل او مشكلة اتصل بنا على تيليجرام      </div>
+        </div>
+    </footer>
 </body>
 </html>

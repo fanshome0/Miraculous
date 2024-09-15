@@ -202,7 +202,209 @@
             <p id="message">يرجى تحديد حلقة لبدء المشاهدة</p>
         </div>
         <button class="button" onclick="showModal('season-modal')"><i class="fas fa-list"></i></button>
-        <button class="button" onclick="showDetails()"><i class="fas fa-info-circle"></i></button>
+     
+     
+    
+    <!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up with Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .button {
+            
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            
+        }
+
+        /* The popup modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .slide h3 {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #302b63;
+            color: #fff;
+            padding: 25px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<button class="button" onclick="openModal()"><i class="fas fa-clapperboard"></i></button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeBtn">&times;</span>
+        <h2>كرتونات مقترحة</h2>
+
+        <div class="slider-container">
+            <div class="slider" id="slider">
+                <!-- Slide 1 -->
+                <div class="slide">
+                  <a href="https://tdrsvs.github.io/Adventure-camp-/" target="_blank">
+  <img src="https://s01.babup.com/uploads/Brooklyn-Kenji-Darius-Ben-Sammy-Yaz-camp-cretaceous.jpg" alt="Image 1">
+</a>
+
+                    <h3>مخيم المغامرة</h3>
+                </div>
+                <!-- Slide 2 -->
+                 <div class="slide">
+                  <a href="https://tdrsvs.github.io/ben-10-alien-force/" target="_blank">
+  <img src="https://s01.babup.com/uploads/the-10-main-ben-10-alien-force-aliens-ranked-2-.jpg" alt="Image 2">
+</a>
+
+                    <h3>ben 10 alien force</h3>
+                </div>
+                <!-- Slide 3 -->
+               
+               
+              
+              
+              
+              
+              
+              
+              
+            </div>
+            <!-- Navigation buttons -->
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+
+    // Open the modal
+    function openModal() {
+        document.getElementById("myModal").style.display = "flex";
+    }
+
+    // Close the modal
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    // Add event listener to close button
+    document.getElementById("closeBtn").addEventListener("click", closeModal);
+
+    // Add event listener to close modal when clicking outside of it
+    window.onclick = function(event) {
+        const modal = document.getElementById("myModal");
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    // Show the current slide
+    function showSlide(index) {
+        const slides = document.getElementsByClassName("slide");
+        if (index >= slides.length) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = slides.length - 1;
+        } else {
+            currentSlide = index;
+        }
+        const slider = document.getElementById("slider");
+        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    // Next/Previous slide functions
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+</script>
+
+</body>
+</html>
+    
+    
+    
+    
+    
+       <button class="button" onclick="showDetails()"><i class="fas fa-info-circle"></i></button>
     </div>
 
     <div id="season-modal" class="modal">
@@ -361,11 +563,14 @@
 <li onclick="selectEpisode('https://drive.google.com/file/d/18cP1VbGK9S1GopyV6WGhWr_ZFujROFI7/preview')">الحلقة العاشرة</li>
 
 
-<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الحادية عشرة</li>
-<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثانية عشرة</li>
-<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثالثة عشرة</li>
-<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الرابعة عشرة</li>
-<li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الخامسة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1oxfxGYxnKkm1_PTP5UBjfRGzejEkssHe/preview')"><i class=""></i> الحلقة الحادية عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1zsk4OSUbZ-VaD_J2nF7RB_bM5IGdzsvA/preview')"><i class=""></i> الحلقة الثانية عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1jhS7Tc3a3W8-2gCjDodpTpjblHBkayPL/preview')"><i class=""></i> الحلقة الثالثة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/10I9QFazepplxUDrXCI8CZAkMe20P7v2u/preview')"><i class=""></i> الحلقة الرابعة عشرة</li>
+<li onclick="selectEpisode('https://drive.google.com/file/d/1QXo8nFAl0yL5l2ZKWs7e7s9lyGAxwxAK/preview')"><i class=""></i> الحلقة الخامسة عشرة</li>
+
+
+
 <li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السادسة عشرة</li>
 <li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة السابعة عشرة</li>
 <li onclick="selectEpisode('')"><i class="fas fa-lock"></i> الحلقة الثامنة عشرة</li>
